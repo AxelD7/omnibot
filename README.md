@@ -1,1 +1,1 @@
-# meccabot
+# omnibot

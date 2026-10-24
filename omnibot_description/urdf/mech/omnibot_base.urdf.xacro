@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:include filename="omni_wheel.urdf.xacro" />
+
+    <!-- Rough Robot size estimates, eventually replaced with CAD dimensions later. -->
+    <xacro:property name="base_mass" value="8.0" />
+    <xacro:property name="base_radius" value="0.381" />
+    <xacro:property name="base_height" value="0.1524" />
+    <xacro:property name="ground_offset" value="0.15" />
+
+    <!-- Ground reference frame used by navigation and other ROS tools. -->
+    <link name="base_footprint" />
+
+    <!-- Raises the chassis above the ground reference -->
+    <joint name="base_footprint_joint" type="fixed">
+        <parent link="base_footprint" />
+        <child link="base_link" />
+        <origin xyz="0.0 0.0 ${ground_offset}" rpy="0 0 0" />
+    </joint>
+
+    <link name="base_link">
+        <!-- Visual Cylinder of bot -->
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <cylinder radius="${base_radius}" length="${base_height}" />
+            </geometry>
+            <material name="blue" />
+        </visual>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <cylinder radius="${base_radius}" length="${base_height}" />
+            </geometry>
+        </collision>
+
+        <!-- Inertia of bot is an estimate update the mass and dimensions from CAD later. -->
+        <xacro:inertial_cylinder mass="${base_mass}" length="${base_height}" radius="${base_radius}">
+            <origin xyz="0 0 0" rpy="0 0 0" />
+        </xacro:inertial_cylinder>
+    </link>
+
+    <!-- Three wheels spaced around the chassis. -->
+    <xacro:omni_wheel prefix="wheel_1" parent="base_link" x="${base_radius}" y="0.0" yaw="1.5708" />
+
+    <xacro:omni_wheel prefix="wheel_2" parent="base_link" x="${-base_radius / 2}"
+        y="${base_radius * 0.866025}" yaw="3.6652" />
+
+    <xacro:omni_wheel prefix="wheel_3" parent="base_link" x="${-base_radius / 2}"
+        y="${-base_radius * 0.866025}" yaw="-0.5236" />
+
+</robot>

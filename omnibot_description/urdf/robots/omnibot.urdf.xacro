@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="omnibot">
+
+  <!-- This is the main URDF file that calls on all of our URDF components -->
+  <!-- Global Color Definitions -->
+  <material name="blue">
+    <color rgba="0.0 0.4 0.8 1.0"/>
+  </material>
+  <material name="black">
+    <color rgba="0.0 0.0 0.0 1.0"/>
+  </material>
+
+  <!-- Include statements to inject all of our URDF components -->
+  <xacro:include filename="../mech/inertials.urdf.xacro" />
+  <xacro:include filename="../mech/omnibot_base.urdf.xacro" />
+  <xacro:include filename="../sensors/lidar.urdf.xacro" />
+  <xacro:include filename="../sensors/camera.urdf.xacro" />
+
+</robot>

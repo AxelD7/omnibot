@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <!-- Reusable wheel link and joint. Dimensions are placeholders until CAD is ready. -->
+    <!-- This macro can be reused by putting using the line below in the base of the robot -->
+    <!-- <xacro:omni_wheel prefix="wheel_1" parent="base_link" x="${base_radius}" y="0.0" yaw="1.5708" /> -->
+     
+    <xacro:macro name="omni_wheel" params="prefix parent x y yaw">
+        <xacro:property name="wheel_mass" value="0.5" />
+        <xacro:property name="wheel_radius" value="0.1016" />
+        <xacro:property name="wheel_length" value="0.0508" />
+
+        <joint name="${prefix}_joint" type="continuous">
+            <parent link="${parent}" />
+            <child link="${prefix}_link" />
+            <!-- Defining center of the wheel's joint -->
+            <origin xyz="${x} ${y} -.05" rpy="0 0 ${yaw}" />
+            <!-- The wheel spins around this axis. -->
+            <axis xyz="0 1 0" />
+        </joint>
+
+        <link name="${prefix}_link">
+            <visual>
+                <!-- URDF cylinders use local Z as their length axis rotate it to align the axle with Y. -->
+                <origin xyz="0 0 0" rpy="1.5708 0 0" />
+                <geometry>
+                    <cylinder radius="${wheel_radius}" length="${wheel_length}" />
+                </geometry>
+                <material name="black" />
+            </visual>
+
+            <collision>
+                <origin xyz="0 0 0" rpy="1.5708 0 0" />
+                <geometry>
+                    <cylinder radius="${wheel_radius}" length="${wheel_length}" />
+                </geometry>
+            </collision>
+
+            <!-- Cylinder estimate, replace with measured values when the wheel is finalized. -->
+            <xacro:inertial_cylinder mass="${wheel_mass}" length="${wheel_length}" radius="${wheel_radius}">
+                <origin xyz="0 0 0" rpy="1.5708 0 0" />
+            </xacro:inertial_cylinder>
+        </link>
+
+    </xacro:macro>
+
+</robot>
