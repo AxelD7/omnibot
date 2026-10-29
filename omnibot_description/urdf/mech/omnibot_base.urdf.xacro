@@ -43,12 +43,12 @@
     </link>
 
     <!-- Three wheels spaced around the chassis. -->
-    <xacro:omni_wheel prefix="wheel_1" parent="base_link" x="${base_radius}" y="0.0" yaw="1.5708" />
+    <xacro:omni_wheel suffix="1" parent="base_link" x="${base_radius}" y="0.0" yaw="1.5708" />
 
-    <xacro:omni_wheel prefix="wheel_2" parent="base_link" x="${-base_radius / 2}"
+    <xacro:omni_wheel suffix="2" parent="base_link" x="${-base_radius / 2}"
         y="${base_radius * 0.866025}" yaw="3.6652" />
 
-    <xacro:omni_wheel prefix="wheel_3" parent="base_link" x="${-base_radius / 2}"
+    <xacro:omni_wheel suffix="3" parent="base_link" x="${-base_radius / 2}"
         y="${-base_radius * 0.866025}" yaw="-0.5236" />
 
 </robot>

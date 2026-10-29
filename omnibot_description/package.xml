@@ -12,6 +12,10 @@
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>
 
+  <!-- Our urdf's utilize these to do our omniwheel drive and xacro(urdf combiner). -->
+  <exec_depend>xacro</exec_depend>
+  <exec_depend>gz_ros2_control</exec_depend>
+
   <export>
     <build_type>ament_cmake</build_type>
   </export>

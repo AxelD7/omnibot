@@ -11,9 +11,12 @@
   </material>
 
   <!-- Include statements to inject all of our URDF components -->
-  <xacro:include filename="../mech/inertials.urdf.xacro" />
-  <xacro:include filename="../mech/omnibot_base.urdf.xacro" />
-  <xacro:include filename="../sensors/lidar.urdf.xacro" />
-  <xacro:include filename="../sensors/camera.urdf.xacro" />
+  <xacro:include filename="$(find omnibot_description)/urdf/mech/inertials.urdf.xacro" />
+  <xacro:include filename="$(find omnibot_description)/urdf/mech/omnibot_base.urdf.xacro" />
+  <xacro:include filename="$(find omnibot_description)/urdf/sensors/lidar.urdf.xacro" />
+  <xacro:include filename="$(find omnibot_description)/urdf/sensors/camera.urdf.xacro" />
+  <xacro:include filename="$(find omnibot_description)/urdf/control/ros2_control.urdf.xacro" />
+  <xacro:include filename="$(find omnibot_description)/urdf/control/gazebo_plugin.urdf.xacro" />   
+
 
 </robot>

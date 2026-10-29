@@ -1,0 +1,41 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 50  # Hz
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+    omni_wheel_drive_controller:
+      type: omni_wheel_drive_controller/OmniWheelDriveController
+
+joint_state_broadcaster:
+  ros__parameters:
+    # joint names must match their ros2_control.urdf name declaration to be recognized
+    joints:
+      - omni_wheel_joint_1
+      - omni_wheel_joint_2
+      - omni_wheel_joint_3
+
+omni_wheel_drive_controller:
+  ros__parameters:
+    # joint names must match their ros2_control.urdf name declaration to be recognized
+    wheel_names:
+      - omni_wheel_joint_1
+      - omni_wheel_joint_2  
+      - omni_wheel_joint_3
+
+    # distance from the center of the robot to each wheel
+    robot_radius: 0.381   # Matches sizes in omnibot_base.urdf.xacro
+    # wheel radius, matches omni_wheel.urdf.xacro radius
+    wheel_radius: 0.1016  
+    # orientation of the wheel from the circumference.
+    wheel_offset: 0.0
+
+    odom_frame_id: odom
+    base_frame_id: base_footprint
+
+    position_feedback: false
+    open_loop: false
+    enable_odom_tf: true
+    cmd_vel_timeout: 0.5
+
+    pose_covariance_diagonal: [0.001, 0.001, 0.001, 0.001, 0.001, 0.01]
+    twist_covariance_diagonal: [0.001, 0.001, 0.001, 0.001, 0.001, 0.01]

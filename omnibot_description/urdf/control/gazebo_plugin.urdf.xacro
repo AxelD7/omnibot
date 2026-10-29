@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+    <gazebo>
+
+        <!-- Gazebo Control System Plugin -->
+        <plugin filename="gz_ros2_control-system"
+            name="gz_ros2_control::GazeboSimROS2ControlPlugin">
+            <parameters>$(find omnibot_description)/config/controller_config.yaml</parameters>
+        </plugin>
+    </gazebo>
+</robot>
