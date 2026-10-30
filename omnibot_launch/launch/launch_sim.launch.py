@@ -30,8 +30,10 @@ def generate_launch_description():
     world = LaunchConfiguration("world")
 
     # Declare the world gazebo will load in to.
+    world_path = os.path.join(get_package_share_directory(package_name), "worlds", "empty.sdf")
+
     world_arg = DeclareLaunchArgument(
-        "world", default_value="empty.sdf", description="world to load"
+        "world", default_value=world_path, description="world to load"
     )
     # Gazebo <-> ROS Bridge
     bridge_params = os.path.join(
@@ -59,7 +61,7 @@ def generate_launch_description():
         ),
         # -r starts sim in running mode -v4 is level 4 verbosity for logging.
         launch_arguments={
-            "gz_args": ["-r -v4", world],
+            "gz_args": ["-r -v4 ", world],
             "on_exit_shutdown": "true",
         }.items(),
     )
