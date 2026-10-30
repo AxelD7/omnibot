@@ -65,6 +65,13 @@ def generate_launch_description():
             "on_exit_shutdown": "true",
         }.items(),
     )
+    # Starts the image bridge converting gazebo (sim) image to ros topic (so ros/rviz can do things with it.)
+    ros_gz_image_bridge = Node(
+        package="ros_gz_image",
+        executable="image_bridge",
+        arguments=["/camera/image_raw"]
+    )
+
 
     # Spawns the robot into gazebo from the /robot_description topic.
     spawn_entity = Node(
@@ -112,6 +119,7 @@ def generate_launch_description():
             ros_gz_bridge,
             gazebo,
             spawn_entity,
+            ros_gz_image_bridge,
             rviz_node,
             spawn_wheel_controller,
         ]

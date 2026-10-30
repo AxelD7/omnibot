@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
     <gazebo>
+        <plugin filename="gz-sim-sensors-system" name="gz::sim::systems::Sensors" />
 
         <!-- Gazebo Control System Plugin -->
         <plugin filename="gz_ros2_control-system"

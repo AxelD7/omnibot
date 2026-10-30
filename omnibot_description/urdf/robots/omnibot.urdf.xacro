@@ -4,10 +4,14 @@
   <!-- This is the main URDF file that calls on all of our URDF components -->
   <!-- Global Color Definitions -->
   <material name="blue">
-    <color rgba="0.0 0.4 0.8 1.0"/>
+    <color rgba="0.0 0.4 0.8 1.0" />
   </material>
+  <material name="red">
+    <color rgba="1.0 0.0 0.0 0.0" />
+  </material>
+
   <material name="black">
-    <color rgba="0.0 0.0 0.0 1.0"/>
+    <color rgba="0.0 0.0 0.0 1.0" />
   </material>
 
   <!-- Include statements to inject all of our URDF components -->
@@ -16,7 +20,7 @@
   <xacro:include filename="$(find omnibot_description)/urdf/sensors/lidar.urdf.xacro" />
   <xacro:include filename="$(find omnibot_description)/urdf/sensors/camera.urdf.xacro" />
   <xacro:include filename="$(find omnibot_description)/urdf/control/ros2_control.urdf.xacro" />
-  <xacro:include filename="$(find omnibot_description)/urdf/control/gazebo_plugin.urdf.xacro" />   
+  <xacro:include filename="$(find omnibot_description)/urdf/control/gazebo_plugin.urdf.xacro" />
 
 
 </robot>
